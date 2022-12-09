@@ -1,5 +1,4 @@
 from dino_runner.components.obstacle.obstacle import Obstacle
-from dino_runner.utils.constants import BIRD
 import random
 
 class Bird(Obstacle):
@@ -7,6 +6,3 @@ class Bird(Obstacle):
         self.type = random.randint(0, 1)
         super().__init__(image, self.type)
         self.rect.y = rect_y
-    
-        
-
