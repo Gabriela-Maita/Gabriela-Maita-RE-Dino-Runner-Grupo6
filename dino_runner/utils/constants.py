@@ -73,3 +73,15 @@ DEFAULT_TYPE = "default"
 
 HEART_COUNT = 4
 SHIELD_TYPE = 'shield'
+
+DINO_MENU =[
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoStart.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDead.png")),
+]
+
+LETTER_IMG = [
+    pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png')),
+]
+
+
+

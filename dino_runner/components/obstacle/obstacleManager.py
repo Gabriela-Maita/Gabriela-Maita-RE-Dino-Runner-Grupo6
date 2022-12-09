@@ -17,9 +17,7 @@ class ObstacleManager:
             elif random_obstacle == 1:
                 self.obstacles.append(Cactus(LARGE_CACTUS, 300))
             else:
-                random_obstacle == 2
-                self.obstacles.append(Bird(BIRD, random.randint(90, 260)))       
-
+                self.obstacles.append(Bird(BIRD, random.randint(90, 280)))       
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)

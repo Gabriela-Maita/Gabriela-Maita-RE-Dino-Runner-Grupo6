@@ -1,5 +1,5 @@
 import pygame
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, CLOUD
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, CLOUD, DINO_MENU, LETTER_IMG
 from dino_runner.components.dinosaur.dinosaur import Dinosaur
 from dino_runner.components.obstacle.obstacleManager import ObstacleManager
 from dino_runner.components.score_menu.text_utils import *
@@ -24,7 +24,7 @@ class Game:
         self.death_count = 0
         self.player_heart_manager = PlayerHeartManager()
         self.x_pos_cloud = 1000
-        self.y_pos_cloud = 90
+        self.y_pos_cloud = 45
         self.power_up_manager = PowerUpManager()
 
     def run(self):
@@ -54,7 +54,7 @@ class Game:
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((229, 204, 255))
         self.draw_background() 
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
@@ -77,8 +77,9 @@ class Game:
     def draw_clouds(self):
         cloud_width = CLOUD.get_width()
         self.screen.blit(CLOUD, (self.x_pos_cloud, self.y_pos_cloud))
+        self.screen.blit(CLOUD, (self.x_pos_cloud + 50, self.y_pos_cloud + 10))
         if self.x_pos_cloud <= -cloud_width:
-            self.x_pos_cloud = 3000
+            self.x_pos_cloud = 2700
         self.x_pos_cloud -= self.game_speed 
         
     def score(self):
@@ -94,7 +95,7 @@ class Game:
     def show_menu(self):
         self.running = True
 
-        white_color = (255, 255, 255)
+        white_color = (255, 204, 204)
         self.screen.fill(white_color)
 
         self.print_menu_elements(self.death_count)
@@ -109,6 +110,7 @@ class Game:
         if death_count == 0:
             text, text_rect = get_centered_message('Press any key to Start')
             self.screen.blit(text, text_rect)
+            self.screen.blit(DINO_MENU[0], (half_screen_width - 30 , half_screen_height - 150))
         elif death_count > 0:
             text, text_rect = get_centered_message('Press any key to Restart')
             score, score_rect = get_centered_message('Your score: ' + str(self.points), height=half_screen_height + 50)
@@ -117,6 +119,9 @@ class Game:
             self.screen.blit(death_counter, death_counter_rect)
             self.screen.blit(score, score_rect)
             self.screen.blit(text, text_rect)
+            self.screen.blit(LETTER_IMG[0], (half_screen_width - 160, half_screen_height - 200))
+            self.screen.blit(DINO_MENU[1], (half_screen_width-30, half_screen_height - 150))
+
 
     def handle_key_events_on_menu(self):
         for event in pygame.event.get():
